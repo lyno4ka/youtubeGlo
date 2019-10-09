@@ -12,15 +12,53 @@ const toggleKeyboard = () => {
   keyboard.style.top = keyboard.style.top ? '' : '50%';  
 };
 
+const changeLang = (btn, lang) => {
+    const langRu = [
+        'ё', 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '-', '=', '⬅',
+        'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ',
+        'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э',
+        'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.',
+        'en', ' '
+    ];
+    const langEn = [
+        '`', 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '-', '=', '⬅',
+        'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']',
+        'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"',
+        'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/',
+        'ru', '         '
+    ];
+
+    if (lang === 'en') {
+        btn.forEach((elem, i) => {
+        elem.textContent = langEn[i];
+        })
+    } else {
+        btn.forEach((elem, i) => {
+        elem.textContent = langRu[i];
+            })
+    }
+};
+
 const typing = (event) => {
   const target = event.target;
   
   if (target.tagName.toLowerCase() === 'button') {
-    searchInput.value += target.textContent.trim();
+    const buttons = [...keyboard.querySelectorAll('button')]
+    .filter(elem => elem.style.visibility !== 'hidden');
+    const contentButton = target.textContent.trim();
+    if (contentButton === '⬅') {
+        searchInput.value =  searchInput.value.slice(0, -1);
+    } else if (!contentButton) {
+        searchInput.value += ' ';
+    } else if (contentButton === 'en' || 
+    contentButton === 'ru') {
+        changeLang(buttons, contentButton)
+    } else {
+        searchInput.value += contentButton;
+    }
   }
-  //backspace
-  //пробел
-}
+  
+};
 
 keyboardButton.addEventListener('click', toggleKeyboard);
 closeKeyboard.addEventListener('click', toggleKeyboard);
@@ -60,6 +98,7 @@ keyboard.addEventListener('click', typing);
 //модальное окно
 { 
     const divYoutuber = document.createElement('div');
+
 
 
 }
