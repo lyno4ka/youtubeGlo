@@ -61,6 +61,7 @@ keyboard.addEventListener('click', typing);
 { 
     const divYoutuber = document.createElement('div');
 
+    
 
 }
 
