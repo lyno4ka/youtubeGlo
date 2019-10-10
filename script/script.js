@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //экранная клавиатура
 {
+
 const keyboardButton = document.querySelector('.search-form__keyboard');
 const keyboard = document.querySelector('.keyboard');
 const closeKeyboard = document.getElementById('close-keyboard');
@@ -13,6 +14,7 @@ const toggleKeyboard = () => {
 };
 
 const changeLang = (btn, lang) => {
+
     const langRu = [
         'ё', 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '-', '=', '⬅',
         'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ',
@@ -40,6 +42,7 @@ const changeLang = (btn, lang) => {
 };
 
 const typing = (event) => {
+
   const target = event.target;
   
   if (target.tagName.toLowerCase() === 'button') {
@@ -98,9 +101,19 @@ keyboard.addEventListener('click', typing);
 //модальное окно
 { 
     const divYoutuber = document.createElement('div');
+    const youtuberItems = document.querySelectorAll('[data-youtuber]');
+    
+    divYoutuber.classList.add('youTuberModal');
 
+    document.body.insertAdjacentElement('beforeend', divYoutuber);
+    
+    youtuberItems.forEach(elem => {
+        elem.addEventListener('click', () => {
+            const idVideo = elem.dataset.youtuber;
+            divYoutuber.style.display = 'block';
 
-
+        })
+    })
 }
 
 
