@@ -100,12 +100,19 @@ keyboard.addEventListener('click', typing);
 
 //модальное окно
 { 
-    const divYoutuber = document.createElement('div');
-    const youtuberItems = document.querySelectorAll('[data-youtuber]');
-    
-    divYoutuber.classList.add('youTuberModal');
 
-    document.body.insertAdjacentElement('beforeend', divYoutuber);
+  document.body.insertAdjacentHTML('beforeend', `
+    <div class="youTuberModal">
+        <div id="youtuberClose">&#215;</div>
+        <div id="youtuberContainer"></div>
+    </div>
+    `);
+
+    
+    const youtuberItems = document.querySelectorAll('[data-youtuber]');
+    const youTuberModal = document.querySelector('.youTuberModal');
+
+  console.log(youTuberModal);
     
     youtuberItems.forEach(elem => {
         elem.addEventListener('click', () => {
