@@ -217,11 +217,9 @@ const youtuber = () => {
             .catch(err => console.error('Во время запроса произошла ошибка: ' + err))
        
         const renderSub = data => {
-            console.log(data);
             const ytWrapper = document.getElementById('yt-wrapper');
             ytWrapper.textContent = '';
             data.forEach(item => {
-                console.log('sub');
                 try {
                 const {
                     snippet: {
